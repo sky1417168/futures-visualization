@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import TopBar from './components/TopBar';
+import MyCard from './components/Card';
+import { BrowserRouter as Router, Route, Routes ,Navigate} from 'react-router-dom';
+import BlackRoute from './router/BlackRoute'
+import FarmRoute from './router/FarmRoute'
+import ChemicalRoute from './router/ChemicalRoute'
+import MacroRoute from './router/MacroRoute'
+import SectionRoute from './router/SectionRoute'
+import StrategyRoute from './router/StrategyRoute'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+
+      <Router>
+        <TopBar/>
+        <Routes>  
+            <Route path='/' element={<Navigate to="/black" />}/>
+            <Route path='/black/*' element={<BlackRoute/>}/>
+            <Route path='/farm/*' element={<FarmRoute/>}/>
+            <Route path='/chemical/*' element={<ChemicalRoute/>}/>
+            <Route path='/macro/*' element={<MacroRoute/>}/>
+            <Route path='/section/*' element={<SectionRoute/>}/>
+            <Route path='/strategy/*' element={<StrategyRoute/>}/>
+        </Routes>
+
+      </Router>
+    </div>
+   );
+};
 
 export default App
